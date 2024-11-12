@@ -28,13 +28,16 @@ To run this project, you’ll need to follow these steps:
    git clone [your repository link]
    cd django-blog
 
-Install Dependencies Make sure you have Django installed. You can install Django using:
+2. **Install Dependencies Make sure you have Django installed. You can install Django using:
+   ```bash
+   pip install django
 
-pip install django
-Apply Migrations Migrations are used to set up the database schema for the project:
+3. **Apply Migrations Migrations are used to set up the database schema for the project:
+   ```bash
+   python manage.py migrate
 
-python manage.py migrate
-Run the Development Server Start the Django development server:
+4. **Run the Development Server Start the Django development server:
+   ```bash
+   python manage.py runserver
 
-python manage.py runserver
-Access the Application Open a browser and go to http://127.0.0.1:8000/ to view the project.
+5. **Access the Application Open a browser and go to http://127.0.0.1:8000/ to view the project.
