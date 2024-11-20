@@ -1,14 +1,33 @@
-# blogging/views.py
-
 from django.shortcuts import render, get_object_or_404
-from .models import Post
+from blogging.models import Post
+from django.http import HttpResponse, Http404
+from django.template import loader
 
-def post_list(request):
-    """View to list all blog posts."""
-    posts = Post.objects.all()  # Get all posts from the database
-    return render(request, 'blogging/list.html', {'posts': posts})
+def stub_view(request, *args, **kwargs):
+    """
+    A stub view for debugging purposes.
+    """
+    body = "Stub View\n\n"
+    if args:
+        body += "Args:\n"
+        body += "\n".join(["\t%s" % a for a in args])
+    if kwargs:
+        body += "Kwargs:\n"
+        body += "\n".join(["\t%s: %s" % i for i in kwargs.items()])
+    return HttpResponse(body, content_type="text/plain")
 
-def post_detail(request, post_id):
-    """View to display details of a single blog post."""
-    post = get_object_or_404(Post, pk=post_id)  # Get the specific post by ID or return 404
-    return render(request, 'blogging/detail.html', {'post': post})
+def list_view(request):
+    published = Post.objects.exclude(published_date__exact=None)
+    posts = published.order_by('-published_date')
+    context = {'posts': posts}
+    return render(request, 'blogging/list.html', context)
+
+
+def detail_view(request, post_id):
+    published = Post.objects.exclude(published_date__exact=None)
+    try:
+        post = published.get(pk=post_id)
+    except Post.DoesNotExist:
+        raise Http404
+    context = {'post': post}
+    return render(request, 'blogging/detail.html', context)
