@@ -29,7 +29,7 @@ class FrontEndTestCase(TestCase):
     fixtures = ['blogging_test_fixture.json']  # Updated to match your fixtures file
 
     def setUp(self):
-        self.now = datetime.datetime.now()
+        self.now = now()
         self.timedelta = datetime.timedelta(15)
         author = User.objects.get(pk=1)
         for count in range(1, 11):
@@ -45,7 +45,7 @@ class FrontEndTestCase(TestCase):
     def test_list_only_published(self):
         resp = self.client.get('/')
         resp_text = resp.content.decode(resp.charset)
-        self.assertTrue("Recent Posts" in resp_text)
+        self.assertTrue("My Cool Blog Posts" in resp_text)
         for count in range(1, 11):
             title = f"Post {count} Title"
             if count < 6:
