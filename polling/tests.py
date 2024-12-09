@@ -1,7 +1,8 @@
-#Test for the polling app.and
+# Test for the polling app.and
 
 from django.test import TestCase
 from .models import Poll
+
 
 class PollTestCase(TestCase):
     def setUp(self):
