@@ -1,6 +1,7 @@
-#Model for the polling app
+# Model for the polling app
 
 from django.db import models
+
 
 class Poll(models.Model):
     title = models.CharField(max_length=128)
