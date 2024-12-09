@@ -44,7 +44,6 @@ class FrontEndTestCase(TestCase):
 
     def test_list_only_published(self):
         resp = self.client.get('/')
-        # the content of the rendered response is always a bytestring
         resp_text = resp.content.decode(resp.charset)
         self.assertTrue("Recent Posts" in resp_text)
         for count in range(1, 11):
@@ -64,5 +63,3 @@ class FrontEndTestCase(TestCase):
                 self.assertContains(resp, title)
             else:
                 self.assertEqual(resp.status_code, 404)
-
-    
