@@ -1,7 +1,7 @@
 from django.urls import path
-from . import views
+from polling.views import list_view, detail_view, PollListView
 
 urlpatterns = [
-    path('', views.list_view, name='poll_list'),  # Adjust view and name as needed
-    path('poll/<int:poll_id>/', views.detail_view, name='poll_detail'),
+    path('', PollListView.as_view(), name='poll_index'),
+    path('polls/<int:poll_id>/', detail_view, name='poll_detail'),
 ]

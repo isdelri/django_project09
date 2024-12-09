@@ -3,6 +3,11 @@
 <h1>{{ poll.title }}</h1>
 <p>{{ poll.text }}</p>
 <p>Score: {{ poll.score }}</p>
+
+{% if request.GET.voted %}
+<p style="color: green;">Thank you for voting!</p>
+{% endif %}
+
 <form method="POST">
     {% csrf_token %}
     <button type="submit" name="vote" value="Yes">Vote Yes</button>
