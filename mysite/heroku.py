@@ -15,7 +15,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "fallback-secret-key")
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(",")
+ALLOWED_HOSTS = ['django-python330-isdelri-dd6a107d4419.herokuapp.com', 'localhost', '127.0.0.1']
 
 MIDDLEWARE = (
     "whitenoise.middleware.WhiteNoiseMiddleware",
