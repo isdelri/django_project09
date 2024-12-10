@@ -24,6 +24,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -78,10 +79,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"  # For `collectstatic`
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'blogging/static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/"
+
+ALLOWED_HOSTS = ['django-python330-isdelri-dd6a107d4419.herokuapp.com']
