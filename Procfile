@@ -1,2 +1,2 @@
-web: gunicorn mysite.wsgi:application
-release: python manage.py migrate --settings=mysite.heroku
+release: python manage.py migrate
+web: gunicorn mysite.wsgi
